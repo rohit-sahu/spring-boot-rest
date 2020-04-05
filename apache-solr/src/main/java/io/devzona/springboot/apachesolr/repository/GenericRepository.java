@@ -53,6 +53,14 @@ public interface GenericRepository<T, ID> {
     boolean existsById(ID id);
 
     /**
+     * Checks whether the data store contains elements that match the given {@link T}.
+     *
+     * @param entity the {@link T} to use for the existence check. Must not be {@literal null}.
+     * @return {@literal true} if the data store contains elements that match the given {@link T}.
+     */
+    <S extends T> boolean exists(S entity);
+
+    /**
      * Returns all instances of the type.
      *
      * @return all entities
