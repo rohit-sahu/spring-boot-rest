@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Page Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: Arial;
+            background-color: #99c9df;
+        }
+        .container {
+            position: relative;
+            background-repeat: no-repeat;
+            object-fit: cover;
+            display: flex;
+            flex-direction: column;
+        }
+        .follow-us-icon {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 172px;
+        }
+        .follow-us-icon span {
+            width:40px;
+        }
+        .yellow-box-container {
+            /* display: flex;
+            flex-direction: column;
+            background-color: #ffcb05;
+            position: absolute;
+            padding: 130px 70px 60px 70px;
+            height: auto;
+            top: 88%;
+            left: 6%;
+            right:6%;
+            border-left: none;
+            border-top: none;
+            border-right:none;
+            border-image: url("img/logo-element.png") 30 round;
+            border: 21px solid transparent; */
+            flex-direction: column;
+            background-color: #ffcb05;
+            /* position: absolute; */
+            /* margin: 0 10% 0 10%; */
+            margin-right: 10%;
+            margin-left: 10%;
+            padding: 130px 4vw 180px 4vw;
+            height: auto;
+            /* top: 54%; */
+            left: 6%;
+            /* right: 6%; */
+            border: 21px solid transparent;
+            /* margin-left: 0px; */
+            border-left: none;
+            border-top: none;
+            border-image: url("img/logo-element.png") 30 round;
+        }
+        .for-exmp {
+            font-size: 0.9em;
+        }
+        .social-container {
+            display: block;
+        }
+        .whatsapp-img img, .email-img img {
+            height: 50px;
+            width: 50px;
+            padding-top:10px;
+            padding-right: 5px;
+        }
+        .whatsapp-img span, .email-img span {
+            font-size: 15px;
+            font-weight: bold;
+            padding-top: 15px;
+            padding-right: 5px;
+        }
+        .email-img, .whatsapp-img {
+            display: flex;
+            flex-direction: row;
+        }
+        .follow-us {
+            display: flex;
+            flex-direction: row;
+        }
+        .follow-us p {
+            padding-right: 7px;
+            margin-top:10px;
+        }
+        .follow-us img {
+            border-radius: 50%;
+            width:100%;
+        }
+        .blue-box {
+            position: absolute;
+            left: 6%;
+            right: 6%;
+            bottom: -127%;
+            background-color: #34c0eb;
+            height: 20px;
+        }
+        .log-box {
+            width:60%;
+        }
+        .log-box img {
+            float: right;
+            width:100%;
+        }
+        .black-box {
+            background-color: black;
+            width: 100%;
+        }
+        .text-container {
+            padding: 50px 14vw; color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div>
+        <div class="container"><img src="cid:CLF" alt="image" width="100%"/></div>
+        <div class="yellow-box-container"><h2 th:text="'Dear '+${fullName}">Dear </h2>
+            <p>Greetings from L&T Finance Ltd!</p>
+            <p>It gives us great pleasure to welcome you as a part of the L&T Finance family.</p>
+            <p>For easy and hassle-free loan information, we are happy to send you the Welcome Letter for your loan
+                account.</p> <h4>How to access the attachment:</h4>
+            <p>The first four letters of your password should be the first four letters of your name as per your loan
+                account, followed by the date and month of birth in ddmm format.</p>
+            <p class="for-exmp">For example, if the name in your loan account is Ankita Mishra and your date of birth is
+                January 12, 1990, then your password will be anki1201. The password is case-sensitive (lowercase).Please
+                do not include any special characters or spaces.</p>
+            <h3>In case of queries, please reach out to us</h3>
+            <div class="social-container">
+                <div class="whatsapp-img"><img src="cid:whatsap"/> <span>Call 1800 209 4747</span></div>
+                <div class="email-img"><img src="cid:email"/> <span>Write to us at customercare@ltfs.com</span></div>
+            </div>
+            <p>Thank you for choosing L&T Finance Assuring you of our best services at all times. We look forward to
+                enhancing our relationship with you.</p>
+            <div class="follow-us"><p>Follow us on</p>
+                <div class="follow-us-icon"><span><a href="https://www.facebook.com/LnTFS/"><img
+                        src="cid:fb"/></a></span> <span><a href="https://www.twitter.com/LnTFSOnline"><img
+                        src="cid:twitter"/></a></span> <span><a href="https://www.youtube.com/user/ltfinance"><img
+                        src="cid:youtube"/></a></span> <span><a
+                        href="https://www.linkedin.com/company/l%26t-finance"><img src="cid:linkedin"/></a></span></div>
+            </div>
+            <div class="log-box"><img src="cid:logo"/></div>
+        </div>
+        <div class="black-box">
+            <div class="text-container"><p class="text">L&T Finance Ltd.</p>
+                <p class="text"> Disclamair:This e-mail is confidential. It may also be legally privileged. If you are
+                    not the addressee you may not copy, forward,disclose or use any part of it.Internet communications
+                    cannot be guranteed to be timely, secure, error or virus-free. The sender does not accept liability
+                    for any errors or omissions. We maintaine strict security standards and procedures to prevent
+                    unauthorized access to information about you Copyright L&T Finance Ltd. All rights reserved.Terms &
+                    Conditions apply. </p></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
