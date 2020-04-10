@@ -97,11 +97,12 @@ public class EmailServiceImpl implements EmailService {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
         if (fileToAttach != null && !fileToAttach.isEmpty()) {
-            fileToAttach.forEach(file -> {
+            fileToAttach.forEach(filePath -> {
                 //UrlResource urlResource = new FileUrlResource("file://" + file);
-                FileSystemResource fileSystemResource = new FileSystemResource(new File(file));
+                File file = new File(filePath);
+                FileSystemResource fileSystemResource = new FileSystemResource(file);
                 try {
-                    helper.addAttachment("Invoice", fileSystemResource);
+                    helper.addAttachment(file.getName(), fileSystemResource);
                 } catch (MessagingException e) {
                     e.printStackTrace();
                 }
