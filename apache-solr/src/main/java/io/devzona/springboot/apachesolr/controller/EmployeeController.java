@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/employees")
+@CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200" })
 public class EmployeeController {
 
     @Autowired
@@ -57,6 +58,6 @@ public class EmployeeController {
     public HttpStatus deleteEmployeeById(@PathVariable("id") Long id)
             throws RecordNotFoundException {
         service.deleteEmployeeById(id);
-        return HttpStatus.FORBIDDEN;
+        return HttpStatus.OK;
     }
 }
