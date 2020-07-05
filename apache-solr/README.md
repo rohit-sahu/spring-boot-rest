@@ -1,10 +1,10 @@
 ## **Apache Solr Example**
 
-##`Available Scripts`<br />
+`Available Scripts`<br />
 In the project directory, you can run:<br />
 >_[Download](https://lucene.apache.org/solr/downloads.html) the Apache solr in local system as per OS_ 
 
->####_For Ubuntu OS Commands:_
+>_For Ubuntu OS Commands:_
 #### Start Solr: 
     ./bin/solr start
 #### Start Solr in the foreground: 
