@@ -4,8 +4,11 @@ import io.devzona.springboot.apachesolr.exception.RecordNotFoundException;
 import io.devzona.springboot.apachesolr.model.Employee;
 import io.devzona.springboot.apachesolr.repository.EmployeeRepository;
 import io.devzona.springboot.apachesolr.service.EmployeeService;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -31,10 +34,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @SneakyThrows
+    @Cacheable(value = "employee", key = "#id", sync = true)
     public Employee getEmployeeById(Long id) throws RecordNotFoundException {
         Optional<Employee> employee = repository.findById(id);
 
         if (employee.isPresent()) {
+            Thread.sleep(6000); // To Test the caching.
             return employee.get();
         } else {
             throw new RecordNotFoundException("No employee record exist for given id");
@@ -63,6 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @CacheEvict(value = "employee", key = "#id")
     public void deleteEmployeeById(Long id) throws RecordNotFoundException {
         Optional<Employee> employee = repository.findById(id);
 

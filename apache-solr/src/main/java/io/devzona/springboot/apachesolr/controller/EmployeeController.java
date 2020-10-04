@@ -54,6 +54,13 @@ public class EmployeeController {
         return new ResponseEntity<Employee>(updated, new HttpHeaders(), HttpStatus.OK);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee)
+            throws RecordNotFoundException {
+        Employee updated = service.createOrUpdateEmployee(employee);
+        return new ResponseEntity<Employee>(updated, new HttpHeaders(), HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public HttpStatus deleteEmployeeById(@PathVariable("id") Long id)
             throws RecordNotFoundException {
