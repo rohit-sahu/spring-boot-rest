@@ -1,0 +1,53 @@
+server:
+  port: 8080
+  servlet:
+    contextPath: /kafka-broker
+  compression:
+    enabled: true
+    min-response-size: 2048
+    mime-types: application/pdf,text/html,text/xml,text/plain,text/css
+  tomcat:
+    max-threads: 350
+#LOGGING PROPERTIES
+logging:
+  level:
+    root: DEBUG
+    org.springframework.cache: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M --- %msg%n"
+#SPRING PROPERTIES
+spring:
+  # Pretty-print JSON responses
+  jackson:
+    serialization:
+      indent_output: true
+  # Color-coded logging output, value can be either ALWAYS, NEVER or DETECT
+  output:
+    ansi:
+      enabled: DETECT
+  kafka:
+    client-id: Kafka-Test1
+    bootstrap-servers: localhost:9200,localhost:9300,localhost:9400
+    admin:
+      client-id: Kafka-Admin-Producer-Test1
+      fail-fast: false
+    properties:
+      #Server host name verification is disabled by setting ssl.endpoint.identification.algorithm to an empty string
+      ssl.endpoint.identification.algorithm: RSA
+    ssl:
+      protocol: SSL
+      trust-store-location: /home/rohitkumar/Documents/kafka-cerificates/kafka.server.truststore.jks
+      trust-store-password: Rohiraj
+      key-store-location: /home/rohitkumar/Documents/kafka-cerificates/kafka.server.keystore.jks
+      key-store-password: Rohiraj
+      key-password: Rohiraj
+    producer:
+      bootstrap-servers: localhost:9200,localhost:9300,localhost:9400
+      retries: 0
+      acks: all
+      batch-size: 16384
+      buffer-memory: 33554432
+      client-id: Kafka-Producer-Test1
+      compression-type: gzip
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer

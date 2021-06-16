@@ -1,0 +1,68 @@
+package io.devzona.springboot.emailproducer.config;
+
+import io.devzona.springboot.emailproducer.exception.AsyncExceptionHandler;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.AsyncConfigurer;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+import java.util.concurrent.Executor;
+
+/**
+ * Configuration class for Async feature.
+ *
+ * @author Rohit.Sahu
+ */
+@Slf4j
+@EnableAsync
+@Configuration
+public class AsyncConfig implements AsyncConfigurer {
+
+    /**
+     * Enable the Application level asynchronous feature.
+     * <p>
+     * {@inheritDoc}
+     *
+     * @return {@code Executor}
+     */
+    @Override
+    public Executor getAsyncExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(10);
+        executor.setMaxPoolSize(20);
+        executor.setQueueCapacity(1000);
+        executor.setThreadNamePrefix("MB_HOME_LOAN_Executor-");
+        executor.initialize();
+        return executor;
+    }
+
+    /**
+     * Handle the exception for Async methods.
+     * {@inheritDoc}
+     *
+     * @return {@code AsyncUncaughtExceptionHandler}
+     */
+    @Override
+    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+        return new AsyncExceptionHandler();
+    }
+
+    /**
+     * Enable the individual method level asynchronous feature.
+     *
+     * @return {@code Executor}
+     */
+    @Bean(name = "smsExecutor")
+    public Executor smsExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(10);
+        executor.setMaxPoolSize(Integer.MAX_VALUE);
+        executor.setQueueCapacity(1000);
+        executor.setThreadNamePrefix("MB_HOME_LOAN_SMS-");
+        executor.initialize();
+        return executor;
+    }
+}

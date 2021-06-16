@@ -1,0 +1,41 @@
+#SPRING PROPERTIES
+spring:
+  kafka:
+    client-id: ${spring.application.name}
+    bootstrap-servers: localhost:9200,localhost:9300,localhost:9400,localhost:9092
+    admin:
+      client-id: ${spring.application.name}-Admin
+      fail-fast: false
+    properties:
+      #Server host name verification is disabled by setting ssl.endpoint.identification.algorithm to an empty string
+      ssl.endpoint.identification.algorithm: https
+      ssl.enabled.protocols: TLSv1.2,TLSv1.1,TLSv1
+      ssl.keystore.type: JKS
+      ssl.protocol: TLS
+      ssl.keymanager.algorithm: SunX509
+      ssl.trustmanager.algorithm: PKIX
+      ssl.truststore.type: JKS
+      allow.auto.create.topics: true
+    ssl:
+      protocol: SSL
+      trust-store-location: /home/rohitkumar/Documents/kafka-cerificates/kafka.server.truststore.jks
+      trust-store-password: Rohiraj
+      key-store-location: /home/rohitkumar/Documents/kafka-cerificates/kafka.server.keystore.jks
+      key-store-password: Rohiraj
+      key-password: Rohiraj
+    consumer:
+      bootstrap-servers: localhost:9200,localhost:9300,localhost:9400,localhost:9092
+      retries: 3
+      acks: all
+      batch-size: 16384
+      buffer-memory: 33554432
+      client-id: ${spring.application.name}
+      compression-type: gzip
+      group-id: Email-Consumer
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      #key-deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
+      #key-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+      #value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      #value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
